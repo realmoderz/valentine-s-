@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Special Proposal ❤️</title>
+    <!-- Romantic Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 100%; min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #2b0b30 0%, #0a0410 100%);
+            overflow: hidden;
+            display: flex; justify-content: center; align-items: center; text-align: center;
+            color: white;
+        }
+
+        /* Glassmorphism Card Style */
+        .page {
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            width: 90%; max-width: 500px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            animation: fadeIn 1.2s ease-in-out forwards;
+            position: relative; z-index: 10;
+        }
+
+        .page.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff758c;
+            text-shadow: 0 0 10px rgba(255, 117, 140, 0.6);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2rem; }
+        p { font-size: 1.1rem; line-height: 1.6; color: #ddd; margin-bottom: 25px; font-weight: 400; }
+
+        /* Set fixed square dimensions so GIFs always look perfect */
+        .cute-gif {
+            width: 200px; 
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px; 
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255,117,140,0.3);
+            pointer-events: none;
+        }
+
+        /* Glowing Buttons */
+        .btn {
+            padding: 12px 30px; font-size: 1.2rem; font-weight: 600; font-family: 'Montserrat', sans-serif;
+            color: white; background: linear-gradient(45deg, #ff0844 0%, #ffb199 100%);
+            border: none; border-radius: 50px; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 8, 68, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 8, 68, 0.7);
+        }
+
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 8, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 8, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 8, 68, 0); }
+        }
+
+        /* Animated Love Letter CSS */
+        .env-container {
+            position: relative; width: 280px; height: 180px; margin: 30px auto 40px; cursor: pointer; perspective: 1000px;
+        }
+        .env-back {
+            position: absolute; width: 100%; height: 100%; background: #600018; border-radius: 10px; z-index: 1;
+        }
+        .env-letter {
+            position: absolute; bottom: 10px; left: 10px; width: 260px; height: 250px;
+            background: #fffafa; border-radius: 8px; z-index: 2; transition: transform 1s ease, z-index 1s;
+            padding: 20px; text-align: center; color: #8b0000; font-family: 'Dancing Script', cursive;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .env-letter p {
+            color: #550000; font-size: 1.2rem; line-height: 1.3; margin: 0; font-weight: 700;
+        }
+        .env-front {
+            position: absolute; width: 100%; height: 100%; background: #8b002b;
+            clip-path: polygon(0 100%, 0 0, 50% 50%, 100% 0, 100% 100%); z-index: 3; border-radius: 0 0 10px 10px;
+        }
+        .env-flap {
+            position: absolute; width: 100%; height: 100%; background: #a10036;
+            clip-path: polygon(0 0, 100% 0, 50% 50%); transform-origin: top; transition: transform 0.8s ease; z-index: 4; border-radius: 10px 10px 0 0;
+        }
+
+        /* When envelope is opened */
+        .env-container.open .env-flap { transform: rotateX(180deg); z-index: 1; }
+        .env-container.open .env-letter { transform: translateY(-130px); z-index: 5; }
+
+        /* Proposal Buttons */
+        .btn-group { position: relative; width: 100%; height: 80px; margin-top: 20px; }
+        .btn-yes { background: linear-gradient(45deg, #0ba360 0%, #3cba92 100%); position: absolute; left: 10%; }
+        .btn-yes:hover { box-shadow: 0 10px 25px rgba(11, 163, 96, 0.7); }
+        .btn-no { background: linear-gradient(45deg, #8e9eab 0%, #eef2f3 100%); color: #333; position: absolute; right: 10%; transition: 0.2s ease; }
+
+        /* Floating Light Particles Background */
+        .particles-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden; }
+        .particle {
+            position: absolute; bottom: -10px; width: 5px; height: 5px;
+            background: #ff758c; border-radius: 50%; box-shadow: 0 0 10px #ff758c;
+            animation: floatUp 5s infinite ease-in; opacity: 0.6;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+        
+        .heart-confetti {
+            position: absolute; top: -20px; color: #ff0844; font-size: 20px;
+            animation: fallDrop 3s linear forwards; z-index: 100;
+        }
+        @keyframes fallDrop {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Romantic Piano Music -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/10/14/audio_9939f792cb.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- PAGE 1: Welcome -->
+    <div class="page active" id="page-1">
+        <h1>Hey Beautiful... ✨</h1>
+        <p>I have something very special hidden in my heart that I want to share with you today.</p>
+        <button class="btn pulse" onclick="nextPage(1)">Let's Begin ❤️</button>
+    </div>
+
+    <!-- PAGE 2: Introduction -->
+    <div class="page" id="page-2">
+        <div class="tenor-gif-embed" data-postid="40520473886732936" data-share-method="host" data-aspect-ratio="0.75" data-width="100%"></div> 
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+         <h2>Since the day we met...</h2>
+        <p>My world has completely changed. You brought so much joy, light, and happiness into my boring life.</p>
+        <button class="btn" onclick="nextPage(2)">And then? 🥺</button>
+    </div>
+
+    <!-- PAGE 3: The Feelings -->
+    <div class="page" id="page-3">
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjRteXR1a2l4anA4Y2s1OXQzbXBvOW41bXRndG9neTQxeWV4NzhlbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" class="cute-gif" alt="Cute Love">
+        <h2>Every little thing you do...</h2>
+        <p>Makes me fall harder for you. Your smile is my favorite sight, and your voice is my favorite melody. You are my peace.</p>
+        <button class="btn" onclick="nextPage(3)">Next ➡️</button>
+    </div>
+
+    <!-- PAGE 4: The Animated Love Letter -->
+    <div class="page" id="page-4">
+        <h2>I wrote something for you...</h2>
+        <p style="font-size: 0.9rem; color: #ff758c;">(Tap the envelope to open it 💌)</p>
+        
+        <div class="env-container" id="envelope" onclick="openLetter()">
+            <div class="env-back"></div>
+            <div class="env-letter">
+                <p>My Dearest, <br><br>You are my favorite person and my greatest blessing. I just want to hold your hand, annoy you, and love you endlessly for the rest of my life. <br><br>I Love You! ❤️</p>
+            </div>
+            <div class="env-front"></div>
+            <div class="env-flap"></div>
+        </div>
+
+        <button class="btn" id="letter-btn" style="display: none; margin-top: 20px;" onclick="nextPage(4)">I have one question... 🙈</button>
+    </div>
+
+    <!-- PAGE 5: The Proposal -->
+    <div class="page" id="page-5">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB5cndtd21jYmlwZzlkZWZ2NnVmbTN0cmRsdnV5Zm5rbWhtYTNzZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qQdL532ZANbjy/giphy.gif" class="cute-gif" alt="Begging">
+        <h1>Will you be mine forever? 💍</h1>
+        <p>Promise to keep you this happy always!</p>
+        <div class="btn-group">
+            <button class="btn btn-yes pulse" onclick="nextPage(5)">YES! 😍</button>
+            <button class="btn btn-no" id="btn-no" onmouseover="moveNoButton()" onclick="moveNoButton()">NO 😢</button>
+        </div>
+    </div>
+
+    <!-- PAGE 6: Success -->
+    <div class="page" id="page-6">
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXRpZjU1ZjFpd2sydHN2cnduMTJ6ZHExcmR1aHozYm9tcWg3YnIxZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l8ooOxhcItowwLPuZn/giphy.gif" class="cute-gif" alt="Happy Dance">
+        <h1>I knew it! ❤️🎉</h1>
+        <h2>I love you to the moon & back! ♾️</h2>
+        <p>You just made me the happiest person in the world!</p>
+    </div>
+
+    <script>
+        let audioPlayed = false;
+
+        function nextPage(currentPage) {
+            if (!audioPlayed) {
+                document.getElementById("bg-music").play().catch(()=>console.log("Audio play prevented"));
+                audioPlayed = true;
+            }
+            
+            document.getElementById(`page-${currentPage}`).classList.remove("active");
+            document.getElementById(`page-${currentPage + 1}`).classList.add("active");
+            
+            if (currentPage + 1 === 6) {
+                startHeartRain();
+            }
+        }
+
+        function openLetter() {
+            const envelope = document.getElementById("envelope");
+            if(!envelope.classList.contains("open")) {
+                envelope.classList.add("open");
+                setTimeout(() => {
+                    document.getElementById("letter-btn").style.display = "block";
+                    document.getElementById("letter-btn").style.animation = "fadeIn 1s forwards";
+                }, 1500);
+            }
+        }
+
+        function moveNoButton() {
+            const btnNo = document.getElementById("btn-no");
+            const maxX = window.innerWidth - btnNo.offsetWidth - 20;
+            const maxY = window.innerHeight - btnNo.offsetHeight - 20;
+            
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+            
+            btnNo.style.position = "fixed";
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+        }
+
+        function createParticles() {
+            const particles = document.getElementById("particles");
+            setInterval(() => {
+                const p = document.createElement("div");
+                p.classList.add("particle");
+                p.style.left = Math.random() * 100 + "vw";
+                p.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                particles.appendChild(p);
+                setTimeout(() => p.remove(), 6000);
+            }, 300);
+        }
+
+        function startHeartRain() {
+            const page = document.getElementById("page-6");
+            setInterval(() => {
+                const heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart-confetti");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+                heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+                page.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }, 100);
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
